@@ -1,5 +1,7 @@
 package com.blueberry.sample;
 
+import android.Manifest;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -29,13 +31,14 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i(TAG, "onCreate: ");
+        requestPermission();
         initView();
         mMediaPublisher = MediaPublisher
                 .newInstance(new Config.Builder()
                         .setFps(30) // fps
                         .setMaxWidth(720) //视频的最大宽度
                         .setMinWidth(320) //视频的最小宽度
-                        .setUrl("rtmp://192.168.155.1:1935/live/test")//推送的url
+                        .setUrl("rtmp://172.29.31.143:1935/rtmplive/home")//推送的url
                         .build());
         mMediaPublisher.init();
     }
@@ -89,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     protected void onPause() {
         super.onPause();
         Log.i(TAG, "onPause: ");
-        stop();
+//        stop();
     }
 
     private void stop() {
@@ -126,4 +129,10 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
     }
 
+    private void requestPermission() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            requestPermissions(new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.INTERNET, Manifest.permission.RECORD_AUDIO }, 0);
+        }
+    }
 }
