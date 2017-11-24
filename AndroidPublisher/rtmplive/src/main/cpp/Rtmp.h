@@ -14,11 +14,11 @@
 extern "C" {
 #endif
 // include c header
-#include "rtmp.h"
-#include "rtmp_sys.h"
-#include "log.h"
-#include "android/log.h"
-#include "time.h"
+#include <rtmp.h>
+#include <rtmp_sys.h>
+#include <log.h>
+#include <android/log.h>
+#include <time.h>
 
 #ifdef __cplusplus
 }
