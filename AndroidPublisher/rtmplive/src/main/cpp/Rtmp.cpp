@@ -2,6 +2,7 @@
 // Created by Administrator on 1/16/2017.
 //
 
+#include <cstdlib>
 #include "Rtmp.h"
 
 int Rtmp::init(std::string url, int w, int h, int timeOut) {
